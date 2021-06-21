@@ -7,7 +7,7 @@ from datetime import date
 
 def get_status_website(webSitesInfoList):
     for info in webSitesInfoList:
-        if info[4] == "Active":
+        if info[4] == "A":
             try: 
                 r = requests.get(info[0], timeout=8)
             except Exception as e1:
