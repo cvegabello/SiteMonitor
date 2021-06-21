@@ -10,15 +10,23 @@ def get_status_website(webSitesInfoList):
         if info[4] == "Active":
             try: 
                 r = requests.get(info[0], timeout=8)
-            except Exception as e:
-                print("Exception: {}".format(e.args))
-                emailFuctions.send_email_bodyHtml_externalHTMLFile("156.24.14.132","do.not.reply@igt-noreply.com",info[1], info[2], info[3], [])
-                writeLog("Exception: {}".format(e.args)) 
+            except Exception as e1:
+                print("Exception: {}".format(e1.args))
+                writeLog("Exception: {}".format(e1.args))
+                try:
+                    emailFuctions.send_email_bodyHtml_externalHTMLFile("156.24.14.132","do.not.reply@igt-noreply.com",info[1], info[2], info[3], [])
+                except Exception as e2:
+                    print("Email could not to be sent. Exception: {}".format(e2.args))
+                    writeLog("Email could not to be sent. Exception: {}".format(e2.args)) 
             else:
                 if r.status_code != 200:
                     print("{}. Response code: {}".format (info[2], r.status_code))
-                    emailFuctions.send_email_bodyHtml_externalHTMLFile("156.24.14.132", "do.not.reply@igt-noreply.com", info[1], "{}. Response code: {}".format (info[2], r.status_code), info[3], [])
                     writeLog("{}. Response code: {}".format (info[2], r.status_code))
+                    try:
+                        emailFuctions.send_email_bodyHtml_externalHTMLFile("156.24.14.132", "do.not.reply@igt-noreply.com", info[1], "{}. Response code: {}".format (info[2], r.status_code), info[3], [])
+                    except Exception as e:
+                        print("Email could not to be sent. Exception: {}".format(e.args))
+                        writeLog("Email could not to be sent. Exception: {}".format(e.args)) 
                 else:
                     print("{} is UP. Response code: {}".format (info[0], r.status_code))
                     #emailFuctions.send_email_bodyHtml_externalHTMLFile("156.24.14.132", "do.not.reply@igt-noreply.com", info[1], "NY Subscription portal is UP", info[3], [])

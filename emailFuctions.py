@@ -15,9 +15,11 @@ def send_email_bodyHtml_externalHTMLFile(host, sender, receiver, subject, body_h
             msg.add_attachment(content, maintype='application', subtype='html', filename = attachedFileName)
 
 #"156.24.14.132"
+    
     with smtplib.SMTP(host)as smtp:
         smtp.send_message(msg)
         smtp.quit
+    
 
 
 def send_email_bodyHtml(host, sender, receiver, subject, body_html, attachedsFileName) -> None:
