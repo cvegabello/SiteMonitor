@@ -23,6 +23,7 @@ def get_status_website(webSitesInfoList):
                     print("{}. Response code: {}".format (info[2], r.status_code))
                     writeLog("{}. Response code: {}".format (info[2], r.status_code))
                     try:
+                        # emailFuctions.send_email_bodyHtml_externalHTMLFile("156.24.14.132", "do.not.reply@igt-noreply.com", 'carlos.vegabello@igt.com, naim.adams2@igt.com', "{}. Response code: {}".format (info[2], r.status_code), info[3], [])
                         emailFuctions.send_email_bodyHtml_externalHTMLFile("156.24.14.132", "do.not.reply@igt-noreply.com", info[1], "{}. Response code: {}".format (info[2], r.status_code), info[3], [])
                     except Exception as e:
                         print("Email could not to be sent. Exception: {}".format(e.args))
@@ -30,6 +31,9 @@ def get_status_website(webSitesInfoList):
                 else:
                     print("{} is UP. Response code: {}".format (info[0], r.status_code))
                     #emailFuctions.send_email_bodyHtml_externalHTMLFile("156.24.14.132", "do.not.reply@igt-noreply.com", info[1], "NY Subscription portal is UP", info[3], [])
+                    # emailFuctions.send_email_fromGmail('smtp.gmail.com', 'carlosvegabello@gmail.com', 'carlos.vegabello@igt.com', 'Prueba de correo', 'Hola, este es un mensaje desde Python')
+                    emailFuctions.send_email_bodyHtml_externalHTMLFile('smtp.gmail.com', 'carlosvegabello@gmail.com', info[1], "NY Subscription portal is UP", info[3],[])
+                    
                     writeLog("{} is UP. Response code: {}".format (info[0], r.status_code))
       
 def readCSV(pathFile):
