@@ -5,3 +5,5 @@
 /LOGS
 *.csv
 *.exe
+# Visual Studio code configuration
+.vscode
